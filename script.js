@@ -110,8 +110,26 @@ function btn() {
     oL().innerText = '';
 });
 }
-window.onload = function () {
+
+function loading() {
+  const body = document.querySelector('body');
+  body.appendChild(createCustomElement('h1', 'loading', 'loading'));
+}
+
+function endLoading() {
+  const body = document.querySelector('body');
+  const h1 = document.querySelector('.loading');
+  body.removeChild(h1);
+}
+
+function pro() {
+  endLoading();
   promessa('computador');
-  inserirLocStorCart();
-  btn();
+}
+
+window.onload = async function () {
+  await loading();
+  await setTimeout(pro, 3000);
+  await inserirLocStorCart();
+  await btn(); 
 };
