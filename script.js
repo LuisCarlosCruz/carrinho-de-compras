@@ -16,14 +16,22 @@ function createCustomElement(element, className, innerText) {
   //   return item.querySelector('span.item__sku').innerText;
   // }
   
+  function saveLocStorCart() { // atualizar o local Storage quando clica para remover e quando requisitar 
+    const lis = document.querySelectorAll('.cart__item');
+    const arrayLis = [];
+  
+    for (let index = 0; index < lis.length; index += 1) {
+      arrayLis.push(lis[index].innerText);
+    }
+    localStorage.setItem('cart', JSON.stringify(arrayLis));
+  }
+
 function cartItemClickListener(event) {
   // coloque seu código aqui
   event.remove();
-  }
-    
-// =====================================================================================================
-// =====================================================================================================
-    
+  saveLocStorCart();
+}
+
 function createCartItemElement({ id, title = 0, price }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
@@ -35,13 +43,35 @@ function createCartItemElement({ id, title = 0, price }) {
   li.addEventListener('click', (event) => {
     cartItemClickListener(event.target);
   });
-
+  
   return li;
 }
 
+function inserirLocStorCart() {
+  const jsonLoc = JSON.parse(localStorage.getItem('cart'));
+
+  const ol = document.querySelector('.cart__items'); 
+
+  for (let index = 0; index < jsonLoc.length; index += 1) {
+    const criaElement = createCustomElement('li', 'cart__item', `${jsonLoc[index]}`);
+    ol.appendChild(criaElement);
+  }
+}
+
+// btn();
+// function btn() {
+//   const btn = document.querySelector('.empty-cart')
+//   btn.addEventListener('click', (event) => {
+//     console.log((event.target))
+//   })
+// }
+
 function requestItemSelect(id) { // Requisita o item selecionado através do id 
   fetch(`https://api.mercadolibre.com/items/${id}`)
-  .then((resolve) => resolve.json().then((result) => createCartItemElement(result)));
+  .then((resolve) => resolve.json().then((result) => {
+    createCartItemElement(result);
+    saveLocStorCart();
+    }));
 }
 
 function createProductItemElement({ id, title, thumbnail }) {
@@ -74,7 +104,6 @@ function promessa(event) {
     }
   })
   .then((result) => {
-    // console.log(result);
     for (let index = 0; index < result.length; index += 1) {
       createProductItemElement(result[index]);
     }
@@ -84,4 +113,5 @@ function promessa(event) {
 
 window.onload = () => { 
   promessa('computador');
+  inserirLocStorCart();
 };
