@@ -49,12 +49,13 @@ function createCartItemElement({ id, title = 0, price }) {
 
 function inserirLocStorCart() {
   const jsonLoc = JSON.parse(localStorage.getItem('cart'));
-
+  
   const ol = document.querySelector('.cart__items'); 
-
+  if (jsonLoc !== null && jsonLoc.length > 0) {
   for (let index = 0; index < jsonLoc.length; index += 1) {
     const criaElement = createCustomElement('li', 'cart__item', `${jsonLoc[index]}`);
     ol.appendChild(criaElement);
+  }
   }
 }
 
