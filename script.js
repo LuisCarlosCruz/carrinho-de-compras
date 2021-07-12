@@ -1,6 +1,4 @@
-const oL = () => {
-  return document.querySelector('.cart__items');
-}
+const oL = () => document.querySelector('.cart__items');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -106,14 +104,13 @@ function promessa(event) {
   .catch((erro) => console.log(erro));
 }
 
-function btn () {
-  const btn = document.querySelector('.empty-cart');
-  btn.addEventListener('click', () => {
+function btn() {
+  const btnEmpty = document.querySelector('.empty-cart');
+  btnEmpty.addEventListener('click', () => {
     oL().innerText = '';
-  });
+});
 }
-
-window.onload = () => { 
+window.onload = function () {
   promessa('computador');
   inserirLocStorCart();
   btn();
