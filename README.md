@@ -26,7 +26,7 @@
 
 >## Imagens do Projeto
 
-![Project Gif](./out.gif)
+![Project Gif](./src/img/out.gif)
 
 ---
 
