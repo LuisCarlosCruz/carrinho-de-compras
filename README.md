@@ -1,7 +1,7 @@
 # Boas vindas ao repositório do projeto de Carrinho de Compras! 🛒💨
 
 
-## SUMÁRIO
+>## SUMÁRIO
 
   - [O que será desenvolvido](#o-que-será-desenvolvido)
   - [Imagens do Projeto](#protótipo-do-projeto)
@@ -12,9 +12,9 @@
 
 >## Sobre
 
-Nesse projeto, você será capaz de:
+- Nesse projeto, você será capaz de:
 
-- Fazer requisições a uma API *(Application Programming Interface)* do Mercado Livre;
+  - Fazer requisições a uma API *(Application Programming Interface)* do Mercado Livre e montar o seu carrinho de compras :D
 
 ---
 
