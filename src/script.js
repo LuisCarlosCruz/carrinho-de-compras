@@ -88,7 +88,7 @@ function createProductItemElement({ id, title, thumbnail }) {
 
 function promessa(event) {
   new Promise((resolve, reject) => {
-    if (event === 'computador') {
+    if (event === 'celular') {
       fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${event}`)
       .then((resolv) => resolv.json())
       .then((result) => resolve(result.results));
@@ -124,7 +124,7 @@ function endLoading() {
 
 function pro() {
   endLoading();
-  promessa('computador');
+  promessa('celular');
 }
 
 window.onload = async function () {
